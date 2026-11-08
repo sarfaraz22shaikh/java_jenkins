@@ -16,5 +16,15 @@ pipeline {
                 sh 'java Hello'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t java-hello:latest .'
+            }
+        }
+        stage('Run Container') {
+            steps {
+                sh 'docker run --rm --name java-hello-container java-hello:latest'
+            }
+        }
     }
 }
